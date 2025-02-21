@@ -1,5 +1,5 @@
 # reader-helper
-web-application for using ai language models
+web-application for using ai language models;
 mistral is used by default
 
 Installation:
