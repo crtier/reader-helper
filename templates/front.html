@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReaderHelper</title>
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>ReaderHelper</h1>
+        
+        <textarea id="textInput" placeholder="Enter text"></textarea>
+        <button type="button" class="submit-button" onclick="summarizeText()">Submit</button>
+        <textarea id="result" readonly placeholder="Result will appear here..."></textarea>
+        <div id="loading" class="hidden">Processing...</div>
+    </div>
+
+    <script>
+        function summarizeText() {
+            const text = document.getElementById("textInput").value;
+            const resultBox = document.getElementById("result");
+            const loading = document.getElementById("loading");
+
+            if (!text.trim()) {
+                resultBox.value = "Please enter some text!";
+                return;
+            }
+
+            loading.classList.remove("hidden");
+            resultBox.value = "";
+
+            fetch('/summarize', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ text: text })
+            })
+            .then(response => response.json())
+            .then(data => {
+                loading.classList.add("hidden");
+                resultBox.value = data.summary ? data.summary : "Error: " + data.error;
+                adjustTextareaHeight(resultBox);
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                loading.classList.add("hidden");
+                resultBox.value = "Failed to fetch summary.";
+            });
+        }
+
+        function adjustTextareaHeight(textarea) {
+            textarea.style.height = "auto";
+            textarea.style.height = Math.min(textarea.scrollHeight, 500) + "px";
+        }
+    </script>
+</body>
+</html>

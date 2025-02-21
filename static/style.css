@@ -1,0 +1,89 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "JetBrains Mono", serif;
+    background-color: #4a4a4a;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+.textInput {
+    resize: vertical;
+}
+
+textarea {
+    min-height: 100px;
+    max-height: 500px;
+    width: 1000px;
+    background-color: #1d1d1d;
+    color: white;
+    padding: 10px;
+    border: 2px solid #5e5e5e;
+    border-radius: 10px;
+    font-size: 1rem;
+    resize: vertical;
+    overflow-y: auto;
+    scrollbar-width: none;
+    transition: border 0.3s ease;
+}
+
+#result {
+    min-height: 100px;
+    width: 800px;
+    background-color: #1d1d1d;
+    color: white;
+    padding: 10px;
+    border: 2px solid #5e5e5e;
+    border-radius: 10px;
+    resize: none;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.hidden {
+    display: none;
+}
+
+.submit-button {
+    font-family: "JetBrains Mono", serif;
+    width: 250px;
+    padding: 10px;
+    border-radius: 25px;
+    border: none;
+    background-color: white;
+    color: black;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, scale 0.3s ease;
+}
+
+.submit-button:hover {
+    scale: 1.03;
+    background-color: #e0e0e0;
+}
+
+#loading {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: white;
+    animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
