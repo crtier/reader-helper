@@ -4,7 +4,7 @@ import requests
 app = Flask(__name__)
 
 # YOUR API-key Hugging Face
-HUGGINGFACE_API_KEY = ""
+HUGGINGFACE_API_KEY = "replace with your API-key"
 MODEL_NAME = "mistralai/Mistral-7B-Instruct-v0.2"
 API_URL = f"https://api-inference.huggingface.co/models/{MODEL_NAME}"
 
