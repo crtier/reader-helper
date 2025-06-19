@@ -1,4 +1,5 @@
 # reader-helper
+school project
 web-application for using ai language models;
 
 Installation:
